@@ -51,32 +51,38 @@ h1 {
 }
 
 table {
-    width: 90%; /* Reduce width to 80% of the container */
-    max-width: 900px; /* Set a maximum width for larger screens */
-    margin: 20px auto; /* Center the table using auto margins */
-    border-collapse: separate; /* Allow rounded corners */
-    border-spacing: 0; /* Remove gaps between cells */
+    width: 500%; /* Smaller table size */
+    max-width: 800px;
+    margin: 20px auto;
+    border-collapse: separate;
+    border-spacing: 0;
     background-color: #ffffff;
-    border-radius: 10px; /* Rounded corners */
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Add shadow for depth */
-}
-th, td {
-    padding: 12px;
-    text-align: center;
-    font-size: 14px;
-    border: 1px solid rgba(0, 123, 255, 0.1); /* Soft blue border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+th, td {
+    width: 200px;
+    padding: 6px; /* Add padding for better spacing */
+    text-align: center;
+    font-size: 13px; /* Increase text size */
+    border: 1px solid rgba(0, 123, 255, 0.1); /* Subtle border */
+    word-wrap: break-word; /* Handle long text gracefully */
+    font-weight: bold; 
+}
+
+/* Table Header */
 th {
-    background: linear-gradient(90deg, #007bff, #0056b3); /* Gradient for header */
+    background: linear-gradient(90deg, #007bff, #0056b3);
     color: white;
     font-weight: bold;
     text-transform: uppercase;
+    font-size: 14px; /* Larger font size for headers */
 }
 
 td {
-    border: 1px solid rgba(0, 123, 255, 0.2); /* Softer border for cells */
+    border: 2px solid rgba(0, 123, 255, 0.2); /* Softer border for cells */
 }
 
 tr:nth-child(even) {
@@ -106,10 +112,10 @@ tr {
 }
 
 tr:hover {
-    transform: scale(1.03) translateY(-2px); /* Slight scale and lift effect */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow for a lifted look */
     background: linear-gradient(90deg, #e3f2fd, #bbdefb); /* Gradient background on hover */
     cursor: pointer; /* Indicates interactivity */
+    
 }
 
 .highlight {
