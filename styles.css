@@ -51,8 +51,7 @@ h1 {
 }
 
 table {
-    width: 500%; /* Smaller table size */
-    max-width: 800px;
+    width: 100%; /* Smaller table size */
     margin: 20px auto;
     border-collapse: separate;
     border-spacing: 0;
@@ -63,8 +62,8 @@ table {
 }
 
 th, td {
-    width: 200px;
-    padding: 6px; /* Add padding for better spacing */
+    width:200px; 
+    padding: 8px; /* Add padding for better spacing */
     text-align: center;
     font-size: 13px; /* Increase text size */
     border: 1px solid rgba(0, 123, 255, 0.1); /* Subtle border */
