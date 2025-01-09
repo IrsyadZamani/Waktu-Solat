@@ -166,8 +166,43 @@ window.addEventListener('scroll', () => {
 });
 
 // Variables to track the current month and year
-let currentMonth = new Date().getMonth(); // 0 = January
-let currentYear = new Date().getFullYear();
+
+let currentMonth = 0; // Start from January
+const currentYear = 2025; // Fixed year
+
+function navigateMonth(direction) {
+    currentMonth += direction;
+
+    // Restrict navigation to only 2025
+    if (currentMonth < 0) {
+        currentMonth = 0; // Stay at January
+        alert("You cannot navigate before January 2025!");
+    } else if (currentMonth > 11) {
+        currentMonth = 11; // Stay at December
+        alert("You cannot navigate after December 2025!");
+    }
+
+    updateMonthLabels(); // Update both labels
+    refreshTable(); // Update table data if applicable
+}
+
+function updateMonthLabels() {
+    const monthNames = [
+        "Januari", "Februari", "Mac", "April", "Mei", "Jun",
+        "Julai", "Ogos", "September", "Oktober", "November", "Disember"
+    ];
+
+    // Update both month labels
+    document.getElementById('month-label').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+    document.getElementById('month-label2').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+}
+
+// Initialize month labels
+updateMonthLabels();
+
+
+// Call updateMonthLabel to initialize the label
+updateMonthLabel();
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', () => {
