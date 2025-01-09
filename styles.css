@@ -51,16 +51,16 @@ h1 {
 }
 
 table {
-    width: 100%;
+    width: 90%; /* Reduce width to 80% of the container */
+    max-width: 900px; /* Set a maximum width for larger screens */
+    margin: 20px auto; /* Center the table using auto margins */
     border-collapse: separate; /* Allow rounded corners */
     border-spacing: 0; /* Remove gaps between cells */
-    margin-top: 20px;
     background-color: #ffffff;
-    border-radius: 10px; /* Rounded corners for the table */
+    border-radius: 10px; /* Rounded corners */
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Add shadow for depth */
 }
-
 th, td {
     padding: 12px;
     text-align: center;
