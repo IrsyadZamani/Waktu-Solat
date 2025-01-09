@@ -8,13 +8,15 @@
 </head>
 <body>
     <h1>Waktu Solat</h1>
-
+    
     <div class="search-container">
         <input type="text" id="search" placeholder="Cari mengikut tarikh, hari, atau tarikh hijri..." onkeyup="filterTable()">
     </div>
 
-    <div style="text-align: center;">
-        <button class="refresh-btn" onclick="refreshTable()">Refresh Data</button>
+    <div class="month-navigation">
+        <button class="nav-btn" onclick="navigateMonth(-1)">◀ Sebelumnya</button>
+        <span id="month-label" class="month-label">Januari 2025</span>
+        <button class="nav-btn" onclick="navigateMonth(1)">Seterusnya ▶</button>
     </div>
 
     <table>
@@ -33,11 +35,16 @@
             </tr>
         </thead>
         <tbody id="prayer-times-table">
-            <!-- Data will be populated here -->
+            <!-- Data will be dynamically populated here -->
         </tbody>
     </table>
-
-    <button class="download-btn" onclick="downloadCSV()">Download CSV</button>
+    <div class="month-navigation">
+        <button class="refresh-btn" onclick="refreshTable()">Refresh Data</button>
+        <button class="nav-btn" onclick="navigateMonth(-1)">◀ Sebelumnya</button>
+        <span id="month-label2" class="month-label">Januari 2025</span>
+        <button class="nav-btn" onclick="navigateMonth(1)">Seterusnya ▶</button>
+        <button class="download-btn" onclick="downloadCSV()">Download CSV</button>
+    </div>
 
     <div class="scroll-to-top" id="scrollToTop">↑</div>
 
