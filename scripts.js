@@ -196,6 +196,42 @@ function updateMonthLabels() {
     document.getElementById('month-label').textContent = `${monthNames[currentMonth]} ${currentYear}`;
     document.getElementById('month-label2').textContent = `${monthNames[currentMonth]} ${currentYear}`;
 }
+// Scroll to top function
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Function to fetch and download the PDF
+document.getElementById('download-pdf').addEventListener('click', () => {
+    const pdfUrl = 'jadual_waktu_solat_2025.pdf'; // Replace with the actual path to your PDF file
+
+    // Create a hidden link element
+    const link = document.createElement('a');
+    link.href = pdfUrl;
+    link.download = 'Jadual_Waktu_Solat_2025.pdf'; // Suggested filename for the downloaded file
+    link.style.display = 'none';
+
+    // Add the link to the body and trigger a click
+    document.body.appendChild(link);
+    link.click();
+
+    // Clean up: remove the link after triggering the download
+    document.body.removeChild(link);
+});
+
+// Show or hide the scroll-to-top button based on scroll position
+window.addEventListener('scroll', () => {
+    const scrollToTopButton = document.getElementById('scrollToTop');
+    if (window.scrollY > 200) {
+        scrollToTopButton.style.display = 'block'; // Show the button
+        scrollToTopButton.style.opacity = '1';    // Smooth appearance
+    } else {
+        scrollToTopButton.style.opacity = '0';    // Smooth disappearance
+        setTimeout(() => {
+            scrollToTopButton.style.display = 'none'; // Hide after animation
+        }, 300);
+    }
+});
 
 // Initialize month labels
 updateMonthLabels();

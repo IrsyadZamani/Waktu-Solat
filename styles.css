@@ -7,51 +7,113 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+    background: linear-gradient(135deg, #e8f5e9, #ffffff);
     padding: 20px;
+    text-align: center;
+    background: url('Gambar_1.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #007bff;
-    margin-bottom: 20px;
+    font-size: 3rem;
+    color: #ffffff;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-image: linear-gradient(135deg, #13547a 10%, #80d0c7 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     animation: fadeIn 1s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+h1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #b1e3c9, rgba(0, 168, 107, 0.5));
+    border-radius: 12px;
+    z-index: -1;
+    filter: blur(8px);
+    animation: pulse 2s infinite;
+}
+
+h1:hover {
+    color: #ffffff;
+    background: linear-gradient(135deg, #00a86b, #98e7cb);
+    box-shadow: 0 6px 12px rgba(0, 168, 107, 0.5);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
 }
 
 .search-container {
-    text-align: center;
-    margin-bottom: 20px;
-    animation: fadeIn 1s ease-in-out;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 20px;
+    
 }
+
+.search-container .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: black;
+    font-size: 18px;
+    pointer-events: none; /* Prevent the icon from being interactable */
+    transition: color 0.3s ease;
+}
+
 
 .search-container input {
     width: 100%;
-    max-width: 400px;
-    padding: 12px 20px;
+    padding: 12px 20px 12px 40px; /* Adjust left padding to make space for the icon */
     font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid #80d0c7;
+    border-radius: 25px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 1s ease-in-out;
-    
-}
+    background-image: linear-gradient(135deg, #fdfbfb 10%, #ebedee 100%);}
 
 .search-container input:hover {
     transform: scale(1.03) translateY(-2px);
-
+    background-image: linear-gradient(135deg, #f5f7fa 10%, #c3cfe2 100%);
 }
+
 .search-container input:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.5);
+    border-color: #28a745;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.5);
     transform: scale(1.03) translateY(-2px);
-    
+}
+
+
+.search-container input::placeholder {
+    color: black; /* Set placeholder font color to black */
+    opacity: 1;   /* Ensure it's fully opaque */
+    transition: color 0.3s ease;
+}
+
+.search-container input:focus::placeholder {
+    color: #fff9f9; /* Optional: Change placeholder color slightly on focus */
+}
+
+.search-container input:hover::placeholder,
+.search-container input:focus::placeholder,
+.search-container:hover .search-icon {
+    color: black; /* Match the desired hover color */
 }
 
 table {
-    width: 100%; /* Smaller table size */
+    width: 75%;
     margin: 20px auto;
     border-collapse: separate;
     border-spacing: 0;
@@ -62,47 +124,57 @@ table {
 }
 
 th, td {
-    width:200px; 
-    padding: 8px; /* Add padding for better spacing */
+    width: 200px;
+    padding: 8px;
     text-align: center;
-    font-size: 13px; /* Increase text size */
-    border: 1px solid rgba(0, 123, 255, 0.1); /* Subtle border */
-    word-wrap: break-word; /* Handle long text gracefully */
-    font-weight: bold; 
+    font-size: 13px;
+    border: 1px solid rgba(40, 167, 69, 0.1);
+    word-wrap: break-word;
+    font-weight: bold;
 }
 
 /* Table Header */
 th {
-    background: linear-gradient(90deg, #007bff, #0056b3);
+    background-image: linear-gradient(135deg, #13547a 10%, #80d0c7 100%);
     color: white;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 14px; /* Larger font size for headers */
+    font-size: 14px;
 }
 
 td {
-    border: 2px solid rgba(0, 123, 255, 0.2); /* Softer border for cells */
+    border: 2px solid rgba(40, 167, 69, 0.2);
 }
 
 tr:nth-child(even) {
-    background-color: #f2f9fc; /* Light blue for even rows */
+    background-color: #f1f8f4;
 }
 
 tr:nth-child(odd) {
-    background-color: #ffffff; /* White for odd rows */
+    background-color: #ffffff;
 }
 
 /* Hover Effect on Table Rows */
 tr:hover {
-    background: linear-gradient(90deg, #bbdefb, #e3f2fd); /* Subtle gradient on hover */
-    box-shadow: inset 0 0 10px rgba(0, 123, 255, 0.2); /* Soft inner shadow */
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(90deg, #d7ffd9, #f1fff1); /* Softer gradient for a clean feel */
+    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2), 0 0 15px rgba(0, 128, 0, 0.1); /* Outer glow effect */
+    transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+    transform: scale(1.02); /* Slight scaling for emphasis */
+    border-radius: 8px; /* Add slight rounding for smoother visuals */
+    overflow: hidden; /* Ensures content fits nicely within rounded edges */
+    cursor: pointer; /* Change cursor to pointer for interactive feedback */
+}
+
+
+tr:hover td {
+    color: #006400; /* Darker green for text during hover */
+    font-weight: bold; /* Optional: Make text bold on hover */
 }
 
 /* Rounded Borders for Table */
 table {
-    border: 1px solid rgba(0, 123, 255, 0.2); /* Soft outer border for the table */
-    border-radius: 8px; /* Rounded table corners */
+    border: 1px solid rgba(40, 167, 69, 0.2);
+    border-radius: 8px;
     overflow: hidden;
 }
 
@@ -111,19 +183,18 @@ tr {
 }
 
 tr:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow for a lifted look */
-    background: linear-gradient(90deg, #e3f2fd, #bbdefb); /* Gradient background on hover */
-    cursor: pointer; /* Indicates interactivity */
-    
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #b1e3c9, rgba(0, 168, 107, 0.5));
+    cursor: pointer;
 }
 
 .highlight {
-    background-color: #d1e7dd !important;
+    background-color: #d4edda !important;
     font-weight: bold;
 }
 
 .download-btn {
-    background-color: #28a745;
+    background-image: linear-gradient(135deg, #13547a 10%, #80d0c7 100%);
 }
 
 .refresh-btn {
@@ -131,7 +202,7 @@ tr:hover {
 }
 
 .download-btn:hover {
-    background-color: #218838;
+    background: linear-gradient(135deg, #b1e3c9, rgba(0, 168, 107, 0.5));
     transform: translateY(-3px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
@@ -142,12 +213,18 @@ tr:hover {
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
+button i {
+    margin-right: 8px;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
 /* Scroll to Top Button */
 .scroll-to-top {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #007bff;
+    background-image: linear-gradient(135deg, #243949 10%, #517fa4 100%);
     color: white;
     padding: 10px 15px;
     border-radius: 50%;
@@ -159,7 +236,7 @@ tr:hover {
 
 .scroll-to-top:hover {
     transform: translateY(-5px);
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #b1e3c9, rgba(0, 168, 107, 0.5));
 }
 
 /* Responsive Design */
@@ -181,31 +258,30 @@ tr:hover {
         padding: 10px 20px;
     }
 }
-/* Button container below the table */
-/* Button container below the table */
+
 .btn-container {
     text-align: center;
     margin-top: 20px;
     display: flex;
-    justify-content: space-between; /* Align buttons to left and right */
+    justify-content: space-between;
     gap: 15px;
     animation: fadeIn 1s ease-in-out;
 }
 
 .refresh-btn {
-    margin-left: auto; /* Move to the left */
+    margin-left: auto;
     animation: fadeIn 1s ease-in-out;
 }
 
 .download-btn {
-    margin-right: auto; /* Move to the right */
+    margin-right: auto;
     animation: fadeIn 1s ease-in-out;
 }
 
 .download-btn, .refresh-btn {
-    display: inline-block;
+    text-align: left;
     color: white;
-    border: none;
+    border: 1px solid #80d0c7;
     padding: 12px 25px;
     font-size: 16px;
     cursor: pointer;
@@ -213,26 +289,6 @@ tr:hover {
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     animation: bounceIn 1s ease;
-}
-
-.download-btn {
-    background-color: #28a745;
-}
-
-.refresh-btn {
-    background-color: #ffc107;
-}
-
-.download-btn:hover {
-    background-color: #218838;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-}
-
-.refresh-btn:hover {
-    background-color: #e0a800;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Month navigation container */
@@ -246,19 +302,20 @@ tr:hover {
 }
 
 .nav-btn {
-    background-color: #007bff;
+    background: linear-gradient(132deg, rgb(3, 148, 108) 0.00%, rgb(33, 35, 34) 100.00%);
     color: white;
-    border: none;
+    border: 1px solid #80d0c7;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 8px;
     transition: all 0.3s ease;
     animation: fadeIn 1s ease-in-out;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 .nav-btn:hover {
-    background-color: #0056b3;
+    background: linear-gradient(132deg, rgb(1, 96, 105) 0.00%, rgb(0, 72, 95) 100.00%);
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
@@ -267,9 +324,9 @@ tr:hover {
 .month-label {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #007bff;
-    background: linear-gradient(135deg, #e0f7fa, #ffffff);
-    border: 2px solid #007bff;
+    color: white;
+    background-image: linear-gradient(135deg, #13547a 10%, #80d0c7 100%);
+    border: 1px solid #80d0c7;
     border-radius: 10px;
     padding: 10px 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -278,30 +335,10 @@ tr:hover {
     display: inline-block;
 }
 
-/* Hover effect */
 .month-label:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #ffffff, #e0f7fa);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .month-label {
-        font-size: 1.2rem;
-        padding: 8px 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    table {
-        font-size: 10px;
-    }
-
-    .download-btn, .refresh-btn {
-        width: 100%;
-        padding: 12px 20px;
-    }
+    background: linear-gradient(135deg, #b1e3c9, rgba(0, 168, 107, 0.5));
 }
 
 /* Animations */
@@ -309,28 +346,6 @@ tr:hover {
     from {
         opacity: 0;
         transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
     }
     to {
         opacity: 1;
@@ -347,5 +362,17 @@ tr:hover {
     }
     60% {
         transform: translateY(-5px);
+    }
+}
+
+/* Glow Animation */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
     }
 }
