@@ -1,6 +1,9 @@
 // Path to the CSV file
 const csvFilePath = 'jadual_waktu_solat_JAKIM.csv'; // Replace with your actual CSV file path
 
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+
 // Fetch and load the CSV file
 async function loadCSV() {
     try {
@@ -38,20 +41,43 @@ function populateTable(csvData) {
     });
 
     filterTableByMonth(); // Filter table by the current month after loading
+    highlightToday(); // Highlight today's date
 }
 
 // Highlight today's date in the table
 function highlightToday() {
-    const today = new Date().toLocaleDateString('ms-MY', { day: '2-digit', month: 'long', year: 'numeric' });
+    // Get today's date
+    const today = new Date();
+    
+    // Select all rows in the prayer times table
     const tableRows = document.querySelectorAll('#prayer-times-table tr');
 
     tableRows.forEach(row => {
-        const dateCell = row.children[0]?.textContent;
-        if (dateCell && dateCell.trim() === today) {
-            row.classList.add('highlight');
+        // Get the text content of the first column (the date)
+        const dateCell = row.children[0]?.textContent?.trim();
+
+        // Proceed if the date cell exists and has content
+        if (dateCell) {
+            // Split the date based on the format (either '/' or '-')
+            const dateParts = dateCell.includes('/') ? dateCell.split('/') : dateCell.split('-');
+            
+            // Extract day, month, and year from the date parts
+            const day = parseInt(dateParts[0]); // Day part
+            const month = parseInt(dateParts[1]) - 1; // Month part (0-based index)
+            const year = parseInt(dateParts[2]); // Year part
+
+            // Create a Date object for the current row's date
+            const rowDate = new Date(year, month, day);
+
+            // Compare the row's date with today's date
+            if (rowDate.toDateString() === today.toDateString()) {
+                // Highlight the row if the dates match
+                row.classList.add('highlight');
+            }
         }
     });
 }
+
 
 // Filter table rows by the current month
 function filterTableByMonth() {
@@ -84,53 +110,57 @@ function filterTableByMonth() {
             row.style.display = 'none'; // Hide rows with no date
         }
     });
+
+    updateMonthLabel(); // Update the displayed month
 }
 
-// Navigate between months
+// Navigate between months (restricted to 2025)
 function navigateMonth(direction) {
-    currentMonth += direction;
-    if (currentMonth < 0) {
-        currentMonth = 11; // Wrap to December
-        currentYear--;
-    } else if (currentMonth > 11) {
-        currentMonth = 0; // Wrap to January
-        currentYear++;
+    // Check if we're within the year 2025
+    if (currentYear === 2025) {
+        currentMonth += direction;
+
+        // Prevent navigation before January 2025 or after December 2025
+        if (currentMonth < 0) {
+            currentMonth = 0; // Lock at January if trying to go back before January 2025
+        } else if (currentMonth > 11) {
+            currentMonth = 11; // Lock at December if trying to go beyond December 2025
+        }
+
+        // Update the displayed table and month label
+        filterTableByMonth(); // Filter the table rows for the current month
+        updateMonthLabel(); // Update the month label in the UI
     }
-    updateMonthLabel();
-    filterTableByMonth();
 }
 
-// Update the month label in the UI
+// Update the displayed month label
 function updateMonthLabel() {
     const monthNames = [
-        "Januari", "Februari", "Mac", "April", "Mei", "Jun", 
-        "Julai", "Ogos", "September", "Oktober", "November", "Disember"
+        'Januari', 'Februari', 'Mac', 'April', 'Mei', 'Jun',
+        'Julai', 'Ogos', 'September', 'Oktober', 'November', 'Disember'
     ];
 
-    // Update both labels
-    const monthLabelTop = document.getElementById('month-label');
-    const monthLabelBottom = document.getElementById('month-label2');
+    const monthLabel = document.getElementById('month-label');
+    const monthLabel2 = document.getElementById('month-label2');
 
-    const labelText = `${monthNames[currentMonth]} ${currentYear}`;
-    monthLabelTop.textContent = labelText;
-    monthLabelBottom.textContent = labelText;
+    const formattedLabel = `${monthNames[currentMonth]} ${currentYear}`;
+    if (monthLabel) monthLabel.textContent = formattedLabel;
+    if (monthLabel2) monthLabel2.textContent = formattedLabel;
 }
 
-
-// Search filter for table rows
+// Filter table rows based on search input
 function filterTable() {
-    const searchValue = document.getElementById('search').value.toLowerCase();
+    const searchTerm = document.getElementById('search').value.toLowerCase();
     const tableRows = document.querySelectorAll('#prayer-times-table tr');
 
     tableRows.forEach(row => {
         const rowText = row.textContent.toLowerCase();
-        row.style.display = rowText.includes(searchValue) ? '' : 'none';
+        if (rowText.includes(searchTerm)) {
+            row.style.display = ''; // Show row
+        } else {
+            row.style.display = 'none'; // Hide row
+        }
     });
-}
-
-// Refresh the table
-function refreshTable() {
-    loadCSV();
 }
 
 // Download the table as a CSV file
@@ -148,57 +178,6 @@ function downloadCSV() {
     link.href = URL.createObjectURL(blob);
     link.download = 'Waktu_Solat.csv';
     link.click();
-}
-
-// Scroll to top function
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// Show scroll-to-top button on scroll
-window.addEventListener('scroll', () => {
-    const scrollToTopButton = document.getElementById('scrollToTop');
-    if (window.scrollY > 200) {
-        scrollToTopButton.style.display = 'block';
-    } else {
-        scrollToTopButton.style.display = 'none';
-    }
-});
-
-// Variables to track the current month and year
-
-let currentMonth = 0; // Start from January
-const currentYear = 2025; // Fixed year
-
-function navigateMonth(direction) {
-    currentMonth += direction;
-
-    // Restrict navigation to only 2025
-    if (currentMonth < 0) {
-        currentMonth = 0; // Stay at January
-        alert("You cannot navigate before January 2025!");
-    } else if (currentMonth > 11) {
-        currentMonth = 11; // Stay at December
-        alert("You cannot navigate after December 2025!");
-    }
-
-    updateMonthLabels(); // Update both labels
-    refreshTable(); // Update table data if applicable
-}
-
-function updateMonthLabels() {
-    const monthNames = [
-        "Januari", "Februari", "Mac", "April", "Mei", "Jun",
-        "Julai", "Ogos", "September", "Oktober", "November", "Disember"
-    ];
-
-    // Update both month labels
-    document.getElementById('month-label').textContent = `${monthNames[currentMonth]} ${currentYear}`;
-    document.getElementById('month-label2').textContent = `${monthNames[currentMonth]} ${currentYear}`;
-}
-// Scroll to top function
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Function to fetch and download the PDF
@@ -219,29 +198,39 @@ document.getElementById('download-pdf').addEventListener('click', () => {
     document.body.removeChild(link);
 });
 
-// Show or hide the scroll-to-top button based on scroll position
+function filterTable() {
+    const searchTerm = document.getElementById('search').value.toLowerCase();
+    const tableRows = document.querySelectorAll('#prayer-times-table tr');
+
+    // If the search bar is empty, automatically refresh the table
+    if (searchTerm === '') {
+        loadCSV(); // This will reload the original CSV and refresh the table
+    } else {
+        tableRows.forEach(row => {
+            const rowText = row.textContent.toLowerCase();
+            if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Show row
+            } else {
+                row.style.display = 'none'; // Hide row
+            }
+        });
+    }
+}
+
+// Scroll to the top of the page
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Show the "Scroll to Top" button when scrolling down
 window.addEventListener('scroll', () => {
     const scrollToTopButton = document.getElementById('scrollToTop');
-    if (window.scrollY > 200) {
-        scrollToTopButton.style.display = 'block'; // Show the button
-        scrollToTopButton.style.opacity = '1';    // Smooth appearance
+    if (window.scrollY > 300) {
+        scrollToTopButton.style.display = 'block';
     } else {
-        scrollToTopButton.style.opacity = '0';    // Smooth disappearance
-        setTimeout(() => {
-            scrollToTopButton.style.display = 'none'; // Hide after animation
-        }, 300);
+        scrollToTopButton.style.display = 'none';
     }
 });
 
-// Initialize month labels
-updateMonthLabels();
-
-
-// Call updateMonthLabel to initialize the label
-updateMonthLabel();
-
-// Initialize the application
-document.addEventListener('DOMContentLoaded', () => {
-    updateMonthLabel(); // Set the initial month label
-    loadCSV(); // Load the CSV data into the table
-});
+// Load the CSV file when the page is ready
+document.addEventListener('DOMContentLoaded', loadCSV);

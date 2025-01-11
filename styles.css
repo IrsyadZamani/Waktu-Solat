@@ -143,7 +143,7 @@ th {
 }
 
 td {
-    border: 2px solid rgba(40, 167, 69, 0.2);
+    border: 2px solid #80d0c7;
 }
 
 tr:nth-child(even) {
@@ -189,8 +189,20 @@ tr:hover {
 }
 
 .highlight {
-    background-color: #d4edda !important;
-    font-weight: bold;
+    background-image: linear-gradient(135deg, #76a23f 10%, #0bb15c 100%);
+    box-shadow: 0 4px 10px rgba(0, 128, 0, 0.2), 0 0 15px rgba(0, 128, 0, 0.1); /* Outer glow effect */
+    transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
+    transform: scale(1.02); /* Slight scaling for emphasis */
+    border-radius: 8px; /* Add slight rounding for smoother visuals */
+    overflow: hidden; /* Ensures content fits nicely within rounded edges */
+    cursor: pointer; /* Change cursor to pointer for interactive feedback */
+    border: 2px solid #3cd500
+}
+
+.highlight td{
+    color: white; /* Darker green for text during hover */
+    font-size: medium; /* Optional: Make text bold on hover */
+    border: 2px solid #3cd500
 }
 
 .download-btn {
