@@ -11,27 +11,18 @@
 
 </head>
 <body>
-    <h1>Jadual Waktu Solat Di Negeri Pulau Pinang 2025</h1>
-    <div class="search-container">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" id="search" placeholder="Cari mengikut tarikh, hari, atau tarikh hijri..." onkeyup="filterTable()">
-    </div>
-    
-    <button class="download-btn" onclick="downloadCSV()">
-        <i class="fas fa-file-csv"></i> Download CSV
-    </button>
-    <button class="download-btn" id="download-pdf">
-        <i class="fas fa-file-pdf"></i> Download PDF
-    </button>
+    <h1>Jadual Waktu Solat 2025</h1>
 
     <div class="month-navigation">
         <button class="nav-btn" onclick="navigateMonth(-1)">◀ Sebelumnya</button>
+        <span id="month-label" class="month-label">Januari 2025</span>
         <button class="nav-btn" onclick="navigateMonth(1)">Seterusnya ▶</button>
     </div>
-
-    <span id="month-label" class="month-label">Januari 2025</span>
-    
     <table>
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="search" placeholder="Cari mengikut tarikh, hari, atau tarikh hijri..." onkeyup="filterTable()">
+        </div>
         <thead>
             <tr>
                 <th>Tarikh Miladi</th>
@@ -51,11 +42,16 @@
         </tbody>
     </table>
 
-    <span id="month-label2" class="month-label">Januari 2025</span>
-
     <div class="month-navigation">
+        <button class="download-btn" onclick="downloadCSV()">
+            <i class="fas fa-file-csv"></i> Download CSV
+        </button>
         <button class="nav-btn2" onclick="navigateMonth(-1)">◀ Sebelumnya</button>
+        <span id="month-label2" class="month-label">Januari 2025</span>
         <button class="nav-btn2" onclick="navigateMonth(1)">Seterusnya ▶</button>
+            <button class="download-btn" id="download-pdf">
+        <i class="fas fa-file-pdf"></i> Download PDF
+    </button>
     </div>
     <div class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()">↑</div>
     <script src="scripts.js"></script>
