@@ -217,6 +217,58 @@ function filterTable() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarEl = document.getElementById('calendar');
+    
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',  // Display month view by default
+      locale: 'en',  // Change this to 'ms' or any other locale if needed
+      events: [
+        // Example events
+        {
+          title: 'Ramadan Begins',
+          start: '2025-03-24', // Use proper date format (YYYY-MM-DD)
+          description: 'Start of the holy month of Ramadan.',
+        },
+        {
+          title: 'Eid ul-Fitr',
+          start: '2025-05-19',
+          description: 'Celebrate the end of Ramadan.',
+        },
+        {
+          title: 'Eid ul-Adha',
+          start: '2025-06-05',
+          description: 'Commemoration of the sacrifice of Ibrahim.',
+        },
+      ],
+      eventClick: function(info) {
+        alert('Event: ' + info.event.title + '\nDescription: ' + info.event.extendedProps.description);
+      },
+      // Enable dragging of events if needed
+      editable: true,
+    });
+    
+    calendar.render();
+  });
+
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    locale: 'en',
+    events: function(info, successCallback, failureCallback) {
+      // Fetch events from your API or backend
+      fetch('https://your-api-endpoint.com/get-events')
+        .then(response => response.json())
+        .then(data => {
+          successCallback(data);  // Pass events to calendar
+        })
+        .catch(error => failureCallback(error));  // Handle errors
+    },
+    eventClick: function(info) {
+      alert('Event: ' + info.event.title + '\nDescription: ' + info.event.extendedProps.description);
+    },
+  });
+  
+
 // Scroll to the top of the page
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
