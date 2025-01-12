@@ -1,8 +1,26 @@
-// Path to the CSV file
-const csvFilePath = 'jadual_waktu_solat_JAKIM.csv'; // Replace with your actual CSV file path
+// Base path for the CSV files
+const baseCsvPath = 'jadual_solat_malaysia_2025/';
+const basePdfPath = 'jadual_solat_malaysia_2025/';
 
 let currentMonth = new Date().getMonth();
 let currentYear = new Date().getFullYear();
+
+// Function to handle timezone change
+function handleTimezoneChange() {
+    const timezoneSelector = document.getElementById('timezone');
+    const selectedTimezone = timezoneSelector.value; // Get selected timezone value
+
+    // Update the global CSV file path based on the selected timezone
+    csvFilePath = `${baseCsvPath}${selectedTimezone}.csv`;
+    pdfFilePath = `${basePdfPath}${selectedTimezone}.pdf`;
+
+    const tableContainer = document.getElementById('table-container');
+    tableContainer.style.display = 'block';
+
+    // Reload the CSV file to populate the table
+    loadCSV();
+    
+}
 
 // Fetch and load the CSV file
 async function loadCSV() {
@@ -16,8 +34,11 @@ async function loadCSV() {
         populateTable(csvData);
     } catch (error) {
         console.error('Error loading CSV file:', error);
+        document.getElementById('prayer-times-table').innerHTML =
+            '<tr><td colspan="10">Failed to load data. Please select a valid timezone or check the file path.</td></tr>';
     }
 }
+
 
 // Populate the table with CSV data
 function populateTable(csvData) {
@@ -164,39 +185,46 @@ function filterTable() {
 }
 
 // Download the table as a CSV file
-function downloadCSV() {
-    const tableRows = document.querySelectorAll('#prayer-times-table tr');
-    let csvContent = 'Tarikh Miladi,Tarikh Hijri,Hari,Imsak,Subuh,Syuruk,Zohor,Asar,Maghrib,Isyak\n';
+async function downloadCSV() {
+    try {
+        const response = await fetch(csvFilePath);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-    tableRows.forEach(row => {
-        const rowData = Array.from(row.children).map(cell => cell.textContent);
-        csvContent += rowData.join(',') + '\n';
-    });
+        const blob = await response.blob(); // Get the CSV file as a Blob
+        const link = document.createElement('a'); // Create a link element
 
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'Waktu_Solat.csv';
-    link.click();
+        link.href = URL.createObjectURL(blob);
+        link.download = csvFilePath.split('/').pop(); // Use the file name from the path
+        link.style.display = 'none';
+
+        document.body.appendChild(link);
+        link.click(); // Trigger the download
+        document.body.removeChild(link); // Remove the link element
+    } catch (error) {
+        console.error('Error downloading CSV file:', error);
+    }
 }
 
 // Function to fetch and download the PDF
-document.getElementById('download-pdf').addEventListener('click', () => {
-    const pdfUrl = 'jadual_waktu_solat_2025.pdf'; // Replace with the actual path to your PDF file
+function downloadPDF() {
+    try {
+        // Create a hidden link element
+        const link = document.createElement('a');
+        link.href = pdfFilePath;
+        link.download = pdfFilePath.split('/').pop(); // Use the file name from the path
+        link.style.display = 'none';
+        // Append the link to the document and trigger a click
+        document.body.appendChild(link);
+        link.click();
 
-    // Create a hidden link element
-    const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.download = 'Jadual_Waktu_Solat_2025.pdf'; // Suggested filename for the downloaded file
-    link.style.display = 'none';
-
-    // Add the link to the body and trigger a click
-    document.body.appendChild(link);
-    link.click();
-
-    // Clean up: remove the link after triggering the download
-    document.body.removeChild(link);
-});
+        // Remove the link element after the download
+        document.body.removeChild(link);
+    } catch (error) {
+        console.error('Error downloading PDF file:', error);
+    }
+}
 
 function filterTable() {
     const searchTerm = document.getElementById('search').value.toLowerCase();

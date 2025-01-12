@@ -59,6 +59,7 @@ h1:hover {
     max-width: 400px;
     margin: 0 auto 20px;
     animation: fadeIn 1s ease-in-out;
+    margin-top: 80px;
     
 }
 
@@ -325,7 +326,7 @@ button i {
     transition: all 0.3s ease;
     animation: fadeIn 1s ease-in-out;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-    margin-top: 110px;
+    margin-top: 11px;
 }
 
 .nav-btn:hover {
@@ -368,7 +369,28 @@ button i {
     animation: fadeIn 1s ease-in-out;
 }
 
+/* Timezone Selector */
+.timezone-selector {
+    text-align: center;
+    margin: 20px 0;
+    animation: fadeIn 1s ease-in-out;
+}
 
+.timezone-selector label {
+    font-weight: bold;
+    font-size: larger;
+    margin-right: 10px;
+    color: white;
+}
+
+.timezone-selector select {
+    padding: 8px 12px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 950px; /* Increased width */
+    max-width: 100%; /* Ensures it doesn't overflow on smaller screens */
+}
 
 /* Animations */
 @keyframes fadeIn {
