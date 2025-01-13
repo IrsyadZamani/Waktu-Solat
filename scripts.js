@@ -14,6 +14,9 @@ function handleTimezoneChange() {
     csvFilePath = `${baseCsvPath}${selectedTimezone}.csv`;
     pdfFilePath = `${basePdfPath}${selectedTimezone}.pdf`;
 
+    const zoneLabel = document.getElementById("selected-zone-label");
+    zoneLabel.innerText = `Waktu Solat Malaysia 2025 Bagi Zon ( ${selectedTimezone} )`;
+
     const tableContainer = document.getElementById('table-container');
     tableContainer.style.display = 'block';
 
@@ -259,6 +262,8 @@ window.addEventListener('scroll', () => {
         scrollToTopButton.style.display = 'none';
     }
 });
+
+
 
 // Load the CSV file when the page is ready
 document.addEventListener('DOMContentLoaded', loadCSV);
