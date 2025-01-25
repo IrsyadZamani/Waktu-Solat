@@ -226,25 +226,6 @@ tr:hover {
     transform: translateY(-5px);
     background: linear-gradient(135deg, #b1e3c9, rgba(0, 168, 107, 0.5));
 }
-/* Responsive Design */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    .search-container input {
-        width: 90%;
-    }
-
-    table, th, td {
-        font-size: 12px;
-    }
-
-    .download-btn{
-        font-size: 14px;
-        padding: 10px 20px;
-    }
-}
 .btn-container {
     text-align: center;
     margin-top: 20px;
