@@ -386,3 +386,37 @@ button i {
         opacity: 1;
     }
 }
+
+/* Hide both versions by default */
+    #pc-version, #mobile-version { display: none; }
+
+    /* PC/Laptop styles */
+    @media screen and (min-width: 768px) {
+      #pc-version { display: block; }
+      #mobile-version { display: none; }
+    }
+
+    /* Mobile styles */
+    @media screen and (max-width: 767px) {
+      #mobile-version { display: block; }
+      #pc-version { display: none; }
+
+      table {
+        font-size: 12px;
+        overflow-x: auto;
+        display: block;
+      }
+
+      th, td {
+        padding: 6px;
+      }
+
+      input[type="text"] {
+        width: 90%;
+      }
+
+      .download-btn {
+        width: 90%;
+        font-size: 14px;
+      }
+    }
