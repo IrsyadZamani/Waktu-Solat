@@ -421,9 +421,9 @@ button i {
 
 /* Slideshow */
 .slideshow {
-  width: 920px;   /* tetapkan saiz supaya muat sebelah */
+  width: 950px;   /* tetapkan saiz supaya muat sebelah */
   position: relative;
-  margin-top: 30px;
+  margin-top: 23px;
   border: 3px solid #4CAF50;   /* border hijau */
   border-radius: 8px;          /* rounded macam table */
   box-shadow: 0 3px 8px rgba(0,0,0,0.2); /* sama shadow */
