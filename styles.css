@@ -393,3 +393,29 @@ button i {
         opacity: 1;
     }
 }
+
+.hijri-months {
+  margin: 30px auto;
+  max-width: 500px;
+  text-align: center;
+}
+
+.hijri-months table {
+  width: 80%;
+  border-collapse: collapse;
+  background: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.hijri-months th, 
+.hijri-months td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.hijri-months th {
+  background: #4CAF50;
+  color: white;
+}
