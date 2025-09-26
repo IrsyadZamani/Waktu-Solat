@@ -393,37 +393,27 @@ button i {
         opacity: 1;
     }
 }
-
-.hijri-section {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 30px;
-  margin: 40px auto;
-  flex-wrap: wrap; /* stack bila mobile */
+.hijri-wrapper {
+  display: flex;                /* aktifkan flexbox */
+  justify-content: center;      /* center kedua-dua */
+  align-items: flex-start;      /* align atas */
+  gap: 40px;                    /* jarak */
+  margin: 30px auto;
+  flex-wrap: wrap;              /* auto stack bila skrin kecik */
 }
 
-/* Hijri Table */
-.hijri-months {
-  max-width: 300px;
-}
-
+/* Table */
 .hijri-months table {
-  width: 100%;
   border-collapse: collapse;
-  background: #f9f9f9;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background: #fff;
   border-radius: 8px;
-  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
-
-.hijri-months th, 
-.hijri-months td {
-  padding: 10px;
+.hijri-months th, .hijri-months td {
+  padding: 10px 15px;
   border: 1px solid #ddd;
   text-align: center;
 }
-
 .hijri-months th {
   background: #4CAF50;
   color: white;
@@ -431,25 +421,22 @@ button i {
 
 /* Slideshow */
 .slideshow {
-  max-width: 400px;
+  width: 920px;   /* tetapkan saiz supaya muat sebelah */
   position: relative;
+  margin-top: 30px;
+  border: 3px solid #4CAF50;   /* border hijau */
+  border-radius: 8px;          /* rounded macam table */
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2); /* sama shadow */
+  overflow: hidden;
 }
-
 .slideshow img {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 5px;
   display: block;
 }
-
-.slides {
-  display: none;
-}
-
-.fade {
-  animation: fadeEffect 1.5s;
-}
-
+.slides { display: none; }
+.fade { animation: fadeEffect 1s; }
 @keyframes fadeEffect {
-  from {opacity: 0.4}
-  to {opacity: 1}
+  from {opacity: 0.4;}
+  to {opacity: 1;}
 }
