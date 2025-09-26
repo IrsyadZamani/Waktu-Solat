@@ -394,14 +394,22 @@ button i {
     }
 }
 
+.hijri-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  margin: 40px auto;
+  flex-wrap: wrap; /* stack bila mobile */
+}
+
+/* Hijri Table */
 .hijri-months {
-  margin: 30px auto;
-  max-width: 500px;
-  text-align: center;
+  max-width: 300px;
 }
 
 .hijri-months table {
-  width: 80%;
+  width: 100%;
   border-collapse: collapse;
   background: #f9f9f9;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -413,9 +421,35 @@ button i {
 .hijri-months td {
   padding: 10px;
   border: 1px solid #ddd;
+  text-align: center;
 }
 
 .hijri-months th {
   background: #4CAF50;
   color: white;
+}
+
+/* Slideshow */
+.slideshow {
+  max-width: 400px;
+  position: relative;
+}
+
+.slideshow img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+.slides {
+  display: none;
+}
+
+.fade {
+  animation: fadeEffect 1.5s;
+}
+
+@keyframes fadeEffect {
+  from {opacity: 0.4}
+  to {opacity: 1}
 }
